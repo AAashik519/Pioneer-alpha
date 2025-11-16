@@ -30,7 +30,7 @@ This application includes full **CRUD functionality**, **Drag & Drop todo reorde
 
 
 ## 🧰 Tech Stack
-- **Next.js (App Router**
+- **Next.js (App Router)**
 - **TypeScript**
 - **Redux Toolkit**
 - **RTK Query**
@@ -38,41 +38,5 @@ This application includes full **CRUD functionality**, **Drag & Drop todo reorde
 - **Tailwind CSS**
  
 
----
-
-## 📁 Project Structure
-
-src/
-│
-├── app/
-│   ├── account/
-│   ├── auth/
-│   ├── redux/
-│   │   └── features/
-│   │       ├── auth/
-│   │       └── todos/
-│   │           └── todosAPI.ts
-│   ├── services/store.ts
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── provider.tsx
-│
-├── components/
-│   ├── account/
-│   ├── auth/
-│   ├── layout/
-│   └── todos/
-│       ├── add-task-modal.tsx
-│       ├── empty-state.tsx
-│       ├── task-card.tsx
-│       ├── task-list.tsx
-│       └── todo-nav.tsx
-│
-├── ui/
-├── lib/
-├── globals.css
-├── config.ts
-├── next-env.d.ts
-└── eslint.config.mjs
-
-
+ 
+ 

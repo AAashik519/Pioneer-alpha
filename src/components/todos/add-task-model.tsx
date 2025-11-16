@@ -173,25 +173,29 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
           </div>
 
           {/* Priority */}
-          <div className="space-y-3">
-            <label className="text-sm font-semibold text-gray-900">Priority</label>
-            <div className="flex gap-20 ml-5 mt-3">
-              {(["extreme", "moderate", "low"] as const).map((priority) => (
-                <div key={priority} className="flex items-center justify-between gap-2">
-                  <p className="flex items-center gap-1 capitalize">
-                    <GoDotFill size={20} style={{ color: priorityColors[priority] }} />
-                    {priority}
-                  </p>
-                  <input
-                    type="checkbox"
-                    checked={watch("priority") === priority}
-                    onChange={() => setValue("priority", priority)}
-                    className="w-4 h-4 cursor-pointer"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="space-y-3">
+  <label className="text-sm font-semibold text-gray-900">Priority</label>
+  <div className="flex flex-wrap gap-4 mt-3">
+    {(["extreme", "moderate", "low"] as const).map((priority) => (
+      <div
+        key={priority}
+        className="flex items-center justify-between gap-2 min-w-[120px]"
+      >
+        <p className="flex items-center gap-1 capitalize">
+          <GoDotFill size={20} style={{ color: priorityColors[priority] }} />
+          {priority}
+        </p>
+        <input
+          type="checkbox"
+          checked={watch("priority") === priority}
+          onChange={() => setValue("priority", priority)}
+          className="w-4 h-4 cursor-pointer"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
 
           {/* Description */}
           <div className="space-y-2">
