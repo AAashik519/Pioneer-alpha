@@ -82,14 +82,11 @@ const TodoPage = () => {
 
   const handleUpdateTask = async (taskData: {
     title: string;
-    
+
     description: string;
     priority: "extreme" | "moderate" | "low";
     todo_date: string;
   }) => {
-    console.log(taskData);
-    console.log(typeof taskData.priority);
-    
     const toastId = toast.loading("Updating task...");
     try {
       if (!selectedTask?.id) return;
@@ -103,9 +100,6 @@ const TodoPage = () => {
           id: toastId,
           duration: 3000,
         });
-        // allTodoRefetch();
-        // setModalMode(null);
-        // setSelectedTask(null);
       }
     } catch (error: any) {
       console.log("Update Task Error:", error);

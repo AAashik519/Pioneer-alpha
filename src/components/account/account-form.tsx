@@ -43,7 +43,6 @@ export default function AccountForm() {
     },
   });
 
-  // When userProfile data loads, populate the form
   useEffect(() => {
     if (userProfile) {
       reset({
@@ -65,18 +64,23 @@ export default function AccountForm() {
   const lastName = watch("lastName");
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const toastId = toast.loading("Please wait...");
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
         setProfileImage(event.target?.result as string);
-        toast.success("Photo Selected Successfully");
+        toast.success(
+          "Photo Selected Successfully,After click save change button it will upload ",
+          { id: toastId, duration: 5000 }
+        );
       };
       reader.readAsDataURL(file);
     }
   };
 
   const onSubmit = async (data: UserFormData) => {
+    const toastId = toast.loading("Please wait...");
     try {
       const formData = new FormData();
 
@@ -87,18 +91,18 @@ export default function AccountForm() {
       formData.append("contact_number", data.contact_number);
       formData.append("birthday", data.birthday);
 
-      // Append the image file if uploaded
       if (fileInputRef.current?.files?.[0]) {
         formData.append("profile_image", fileInputRef.current.files[0]);
       }
 
-      // Send FormData to backend
       const res = await updateProfile(formData).unwrap();
-      console.log(res);
-      toast.success("Changes saved successfully!");
+
+      toast.success("Changes saved successfully!", {
+        id: toastId,
+        duration: 3000,
+      });
     } catch (error) {
-      console.error("Error saving changes:", error);
-      toast.error("Error saving changes");
+      toast.error("Error saving changes", { id: toastId, duration: 3000 });
     }
   };
 
@@ -123,7 +127,6 @@ export default function AccountForm() {
         </div>
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-6">
-          {/* Profile Photo Section */}
           <div className="flex flex-col md:flex-row items-center gap-6 pb-6 border-b border-gray-200">
             <div className="w-24 h-24 rounded-full flex items-center justify-center text-white font-bold text-2xl overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 flex-shrink-0">
               {profileImage ? (
@@ -156,7 +159,6 @@ export default function AccountForm() {
           </div>
 
           <div className="space-y-6">
-            {/* First Name & Last Name */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-900">
@@ -194,7 +196,6 @@ export default function AccountForm() {
               </div>
             </div>
 
-            {/* Email - READONLY */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-900">Email</label>
               <input
@@ -216,7 +217,6 @@ export default function AccountForm() {
               )}
             </div>
 
-            {/* Address & Contact Number */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-900">
@@ -252,7 +252,6 @@ export default function AccountForm() {
               </div>
             </div>
 
-            {/* Birthday */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-900">
                 Birthday
@@ -269,7 +268,6 @@ export default function AccountForm() {
               )}
             </div>
 
-            {/* Submit Buttons */}
             <div className="flex flex-col justify-center md:flex-row gap-4 pt-6">
               <button
                 onClick={handleSubmit(onSubmit)}

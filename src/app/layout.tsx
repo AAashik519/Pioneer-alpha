@@ -7,20 +7,11 @@ import { store } from "./redux/store";
 import { ReduxProvider } from "./provider";
  
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // optional weights
+  weight: ["400", "500", "700"], 
 });
 
 export const metadata: Metadata = {

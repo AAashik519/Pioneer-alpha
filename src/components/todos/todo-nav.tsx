@@ -42,7 +42,6 @@ const TodoNav: React.FC<TodoNavProps> = ({
 
   const hasActiveFilters = Object.values(filters ?? {}).some(Boolean);
 
-
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -64,7 +63,10 @@ const TodoNav: React.FC<TodoNavProps> = ({
       <div className="flex gap-4 relative">
         {/* Search Input */}
         <div className="flex-1 relative">
-         <div className="absolute right-1 top-1/2 -translate-y-1/2 text-white bg-secondary hover:bg-secondaryHover duration-300 w-10 h-ful  flex items-center justify-center rounded-lg" > <FiSearch  className="w-6 h-10 " /></div>
+          <div className="absolute right-1 top-1/2 -translate-y-1/2 text-white bg-secondary hover:bg-secondaryHover duration-300 w-10 h-ful  flex items-center justify-center rounded-lg">
+            {" "}
+            <FiSearch className="w-6 h-10 " />
+          </div>
           <Input
             placeholder="Search your task here..."
             className="pl-5 bg-white border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-12 rounded-lg"
@@ -104,7 +106,9 @@ const TodoNav: React.FC<TodoNavProps> = ({
                         checked={filters.today}
                         onChange={() => handleCheckboxChange("today")}
                       />
-                      <span className="text-sm text-gray-700">Deadline Today</span>
+                      <span className="text-sm text-gray-700">
+                        Deadline Today
+                      </span>
                     </label>
 
                     <label className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">

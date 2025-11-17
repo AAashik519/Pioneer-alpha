@@ -1,9 +1,5 @@
-"use client";
-
-import { FiSearch, FiSliders, FiPlus } from "react-icons/fi";
 import { useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+
 import TodoNav from "./todo-nav";
 
 interface EmptyStateProps {
@@ -11,7 +7,6 @@ interface EmptyStateProps {
 }
 
 export function EmptyState({ onAddTask }: EmptyStateProps) {
-  // Add state for search and filters
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
     today: false,
@@ -37,7 +32,6 @@ export function EmptyState({ onAddTask }: EmptyStateProps) {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Left clipboard */}
             <rect
               x="20"
               y="40"
@@ -72,7 +66,7 @@ export function EmptyState({ onAddTask }: EmptyStateProps) {
               stroke="#d1d5db"
               strokeWidth="1"
             />
-            {/* Right clipboard */}
+
             <rect
               x="100"
               y="30"
@@ -107,7 +101,7 @@ export function EmptyState({ onAddTask }: EmptyStateProps) {
               stroke="#d1d5db"
               strokeWidth="1"
             />
-            {/* Blue box in right clipboard */}
+
             <rect x="100" y="80" width="20" height="20" fill="#4f46e5" rx="2" />
           </svg>
         </div>

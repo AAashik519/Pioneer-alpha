@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -37,29 +35,25 @@ interface TaskModalProps {
 type FormValues = {
   title: string;
   description: string;
-  priority?: "extreme" | "moderate" | "low"; // optional
+  priority?: "extreme" | "moderate" | "low";
   todo_date: string;
 };
 
 export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    watch,
-    setValue,
-  } = useForm<FormValues>({
-    defaultValues: {
-      title: mode === "edit" && task ? task.title : "",
-      description: mode === "edit" && task ? task.description : "",
-     priority: mode === "edit" && task ? task.priority : undefined,
-      todo_date: mode === "edit" && task ? task.todo_date : "",
-    },
-  });
+  const { register, handleSubmit, control, reset, watch, setValue } =
+    useForm<FormValues>({
+      defaultValues: {
+        title: mode === "edit" && task ? task.title : "",
+        description: mode === "edit" && task ? task.description : "",
+        priority: mode === "edit" && task ? task.priority : undefined,
+        todo_date: mode === "edit" && task ? task.todo_date : "",
+      },
+    });
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    mode === "edit" && task && task.todo_date ? new Date(task.todo_date) : undefined
+    mode === "edit" && task && task.todo_date
+      ? new Date(task.todo_date)
+      : undefined
   );
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -79,15 +73,14 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
   }, []);
 
   const onFormSubmit = (data: FormValues) => {
-  if (!data.priority) {
- 
-    return;
-  }
-  onSubmit(data as Required<FormValues>); // cast to required for onSubmit
-  reset();
-  setSelectedDate(undefined);
-  onClose();
-};
+    if (!data.priority) {
+      return;
+    }
+    onSubmit(data as Required<FormValues>);
+    reset();
+    setSelectedDate(undefined);
+    onClose();
+  };
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
@@ -125,7 +118,6 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
         </div>
 
         <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
-          {/* Title */}
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-900">Title</label>
             <Input
@@ -135,7 +127,6 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
             />
           </div>
 
-          {/* Date Picker */}
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-900">Date</label>
             <Controller
@@ -172,24 +163,30 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
             />
           </div>
 
-          {/* Priority */}
-        <div className="space-y-3">
-  <label className="text-sm font-semibold text-gray-900">Priority</label>
+          <div className="space-y-3">
+  <label className="text-sm font-semibold text-gray-900">
+    Priority
+  </label>
   <div className="flex flex-wrap gap-4 mt-3">
     {(["extreme", "moderate", "low"] as const).map((priority) => (
       <div
         key={priority}
-        className="flex items-center justify-between gap-2 min-w-[120px]"
+        className="flex items-center gap-2 min-w-[140px]"
       >
         <p className="flex items-center gap-1 capitalize">
-          <GoDotFill size={20} style={{ color: priorityColors[priority] }} />
+          <GoDotFill
+            size={20}
+            style={{ color: priorityColors[priority] }}
+          />
           {priority}
         </p>
+
+        {/* Push checkbox to the right evenly */}
         <input
           type="checkbox"
           checked={watch("priority") === priority}
           onChange={() => setValue("priority", priority)}
-          className="w-4 h-4 cursor-pointer"
+          className="w-4 h-4 cursor-pointer ml-2"
         />
       </div>
     ))}
@@ -197,9 +194,10 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
 </div>
 
 
-          {/* Description */}
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-gray-900">Task Description</label>
+            <label className="text-sm font-semibold text-gray-900">
+              Task Description
+            </label>
             <Textarea
               {...register("description")}
               placeholder="Start writing here....."
@@ -207,7 +205,6 @@ export function TaskModal({ mode, task, onClose, onSubmit }: TaskModalProps) {
             />
           </div>
 
-          {/* Buttons */}
           <div className="flex items-center justify-between pt-4">
             <Button
               type="submit"

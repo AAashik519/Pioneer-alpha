@@ -1,5 +1,4 @@
-"use client"
-
+ 
 import type React from "react"
 import Sidebar from "./sidebar"
 import Header from "./header"

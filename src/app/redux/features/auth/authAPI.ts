@@ -56,6 +56,5 @@ export const authAPI = api.injectEndpoints({
   overrideExisting: false,
 });
 
-// Export the hooks
-export const { useSignupMutation, useLoginMutation, useGetUserProfileQuery,useUpdateProfileMutation } =
-  authAPI;
+export const { useSignupMutation, useLoginMutation, useGetUserProfileQuery,useUpdateProfileMutation } =authAPI;
+ 

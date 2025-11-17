@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -12,40 +13,35 @@ import { toast } from "sonner";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false); // Mobile toggle
+  const [isOpen, setIsOpen] = useState(false);
 
   const isTodosActive = pathname === "/";
   const isAccountActive = pathname === "/account";
 
   const { data: userProfile } = useGetUserProfileQuery();
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const router = useRouter();
 
- const handleLogout = () => {
-  // Clear Redux auth state
-  dispatch(clearAccessToken());
+  const handleLogout = () => {
+    dispatch(clearAccessToken());
 
-  // Clear persisted Redux state if using Redux Persist
-  localStorage.removeItem("persist:root");
+    localStorage.removeItem("persist:root");
 
-  // Remove cookies
-  Cookies.remove("access_token"); // or whatever key you used
+    // Remove cookies
+    Cookies.remove("access_token");
 
-  // Show toast notification
-  toast("Logged out successfully!", {
-    duration: 3000, // 3 seconds
-  });
+    toast("Logged out successfully!", {
+      duration: 3000,
+    });
 
-  // Hard refresh after a short delay
-  setTimeout(() => {
-    window.location.href = "/auth/login"; // full page reload
-  }, 500); // slight delay to show toast
-};
+    setTimeout(() => {
+      window.location.href = "/auth/login";
+    }, 500);
+  };
 
   return (
     <>
-      {/* Mobile Hamburger Button */}
       <button
         className="lg:hidden fixed top-5 left-5 z-50 p-2 bg-blue-700 rounded-md text-white"
         onClick={() => setIsOpen(!isOpen)}
@@ -53,15 +49,15 @@ const Sidebar = () => {
         {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
 
-      {/* Sidebar */}
       <aside
         className={`
           fixed lg:static top-0 left-0 h-full w-64 lg:w-[340px] bg-[#0D224A] text-white flex flex-col
           transform transition-transform duration-300 ease-in-out
-          ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 z-40
+          ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:translate-x-0 z-40
         `}
       >
-        {/* User Profile */}
         <div className="p-6 border-b border-blue-700 mt-20 lg:mt-20">
           <div className="w-24 h-24 rounded-full mx-auto mb-3 border-3 border-white relative overflow-hidden bg-gray-400 flex items-center justify-center">
             <Image
@@ -79,7 +75,6 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 p-6 space-y-2">
           <Link
             href="/"
@@ -88,7 +83,7 @@ const Sidebar = () => {
                 ? "bg-gradient-to-r from-[#1D3474] to-[#0D224A] text-white"
                 : "text-blue-100 hover:bg-gradient-to-r from-[#1D3474] to-[#0D224A]"
             }`}
-            onClick={() => setIsOpen(false)} // Close mobile menu on click
+            onClick={() => setIsOpen(false)}
           >
             <FiCheckSquare className="w-5 h-5 text-[#8CA3CD]" />
             <span>Todos</span>
@@ -108,16 +103,17 @@ const Sidebar = () => {
           </Link>
         </nav>
 
-        {/* Logout */}
         <div className="p-6">
-          <button className="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-100 hover:bg-gradient-to-r from-[#1D3474] to-[#0D224A] transition-colors w-full" onClick={handleLogout}>
+          <button
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-100 hover:bg-gradient-to-r from-[#1D3474] to-[#0D224A] transition-colors w-full"
+            onClick={handleLogout}
+          >
             <FiLogOut className="w-5 h-5" />
             <span>Logout</span>
           </button>
         </div>
       </aside>
 
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-30 lg:hidden"

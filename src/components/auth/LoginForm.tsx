@@ -38,13 +38,11 @@ export function LoginForm() {
 
   const [login] = useLoginMutation();
 
-  // Watch email field
   const email = watch("email");
 
-  // ✅ Fill password automatically when user types an email
   useEffect(() => {
     if (!email) {
-      setValue("password", ""); // clear password if email is empty
+      setValue("password", "");
       return;
     }
 
@@ -66,9 +64,11 @@ export function LoginForm() {
         dispatch(setAccessToken(res.access));
         Cookies.set("access_token", res.access, { expires: 7 });
 
-        // Save password only if Remember Me is checked
         if (data.rememberMe) {
-          localStorage.setItem(`password_for_${data.email}`, btoa(data.password));
+          localStorage.setItem(
+            `password_for_${data.email}`,
+            btoa(data.password)
+          );
         } else {
           localStorage.removeItem(`password_for_${data.email}`);
         }
@@ -77,17 +77,14 @@ export function LoginForm() {
         router.push("/");
       }
     } catch (error: any) {
-      toast.error(
-        error?.data?.detail || "An unexpected error occurred.",
-        { id: toastId }
-      );
+      toast.error(error?.data?.detail || "An unexpected error occurred.", {
+        id: toastId,
+      });
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
-      {/* Email */}
       <div className="space-y-2">
         <label className="text-sm font-medium text-gray-900">Email</label>
         <Input
@@ -107,7 +104,6 @@ export function LoginForm() {
         )}
       </div>
 
-      {/* Password */}
       <div className="space-y-2">
         <label className="text-sm font-medium text-gray-900">Password</label>
         <div className="relative">
@@ -136,7 +132,6 @@ export function LoginForm() {
         )}
       </div>
 
-      {/* Remember Me */}
       <div className="flex items-center justify-between">
         <label className="flex items-center gap-2">
           <input
@@ -148,7 +143,6 @@ export function LoginForm() {
         </label>
       </div>
 
-      {/* Submit Button */}
       <Button
         type="submit"
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2"
