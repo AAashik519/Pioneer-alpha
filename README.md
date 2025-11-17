@@ -84,7 +84,7 @@ npm run build
 
 ```
 
-**Project Structure**
+# Project Structure
 
 ```bash
 Pioneer-alpha/
