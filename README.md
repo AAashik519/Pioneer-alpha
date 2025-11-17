@@ -77,61 +77,57 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-**Build for Production**
-
 # Build the application
 
+```bash
 npm run build
 
-# Start production server
-
-npm start
+```
 
 **Project Structure**
-```bash
 
-pioneer-alpha-todo-app/
+```bash
+Pioneer-alpha/
 ├── src/
-│ ├── app/ # Next.js App Router
-│ │ ├── account/ # Account management page
-│ │ │ └── page.tsx
-│ │ ├── auth/ # Authentication routes
-│ │ │ ├── login/ # Login page
-│ │ │ └── signup/ # Signup page
-│ │ ├── redux/ # Redux configuration
-│ │ ├── favicon.ico
-│ │ ├── globals.css # Global styles
-│ │ ├── layout.tsx # Root layout
-│ │ ├── page.tsx # Home page
-│ │ └── provider.tsx # Redux provider
-│ ├── components/ # Reusable components
-│ │ ├── account/ # Account components
-│ │ │ └── account-form.tsx
-│ │ ├── auth/ # Authentication components
-│ │ ├── layout/ # Layout components
-│ │ │ ├── header.tsx
-│ │ │ ├── main-layout.tsx
-│ │ │ └── sidebar.tsx
-│ │ ├── TodoPage/ # Todo page components
-│ │ │ └── TodoPage.tsx
-│ │ ├── todos/ # Todo-related components
-│ │ │ ├── add-task-model.tsx
-│ │ │ ├── empty-state.tsx
-│ │ │ ├── task-card.tsx
-│ │ │ ├── task-list.tsx
-│ │ │ └── todo-nav.tsx
-│ │ └── ui/ # ShadCN UI components
-│ ├── lib/ # Utility libraries
-│ │ └── redux/ # Redux setup
-│ ├── features/ # Redux features
-│ │ ├── auth/ # Authentication slice
-│ │ └── todos/ # Todos slice
-│ │ └── todosAPI.ts # RTK Query API for todos
-│ └── services/ # Services
-│ └── store.ts # Redux store configuration
+│   ├── app/                    # Next.js App Router
+│   │   ├── account/           # Account management page
+│   │   │   └── page.tsx
+│   │   ├── auth/              # Authentication routes
+│   │   │   ├── login/         # Login page
+│   │   │   └── signup/        # Signup page
+│   │   ├── redux/             # Redux configuration
+│   │   ├── favicon.ico
+│   │   ├── globals.css        # Global styles
+│   │   ├── layout.tsx         # Root layout
+│   │   ├── page.tsx           # Home page
+│   │   └── provider.tsx       # Redux provider
+│   ├── components/            # Reusable components
+│   │   ├── account/           # Account components
+│   │   │   └── account-form.tsx
+│   │   ├── auth/              # Authentication components
+│   │   ├── layout/            # Layout components
+│   │   │   ├── header.tsx
+│   │   │   ├── main-layout.tsx
+│   │   │   └── sidebar.tsx
+│   │   ├── TodoPage/          # Todo page components
+│   │   │   └── TodoPage.tsx
+│   │   ├── todos/             # Todo-related components
+│   │   │   ├── add-task-model.tsx
+│   │   │   ├── empty-state.tsx
+│   │   │   ├── task-card.tsx
+│   │   │   ├── task-list.tsx
+│   │   │   └── todo-nav.tsx
+│   │   └── ui/                # ShadCN UI components
+│   ├── lib/                   # Utility libraries
+│   │   └── redux/             # Redux setup
+│   ├── features/              # Redux features
+│   │   ├── auth/              # Authentication slice
+│   │   └── todos/             # Todos slice
+│   │       └── todosAPI.ts    # RTK Query API for todos
+│   └── services/              # Services
+│       └── store.ts           # Redux store configuration
 ├── .gitignore
-├── component.json # ShadCN components configuration
+├── component.json            # ShadCN components configuration
 └── package.json
 
 ```
- 
